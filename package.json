@@ -1,0 +1,27 @@
+{
+  "scripts": {
+    "walker": "babel-node ./example/walker/index.js",
+    "walker-watch": "nodemon --exec babel-node ./example/walker",
+    "test": "babel-node ./example/test.js",
+    "postinstall": "link-module-alias"
+  },
+  "dependencies": {
+    "@babel/core": "^7.11.4",
+    "@babel/node": "^7.10.5",
+    "@babel/preset-env": "^7.11.0",
+    "blessed": "^0.1.81",
+    "blessed-contrib": "^4.8.20",
+    "date-fns-timezone": "^0.1.4",
+    "link-module-alias": "^1.2.0"
+  },
+  "devDependencies": {
+    "keypress": "^0.2.1",
+    "nodemon": "^2.0.4"
+  },
+  "_moduleAliases": {
+    "~": "./lib",
+    "re": "./re"
+  },
+  "license": "UNLICENSED",
+  "private": true
+}
