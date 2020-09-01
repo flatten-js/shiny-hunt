@@ -1,19 +1,13 @@
 import blessed from 'blessed'
-import { formatToTimeZone } from 'date-fns-timezone'
-
 import contrib from 'blessed-contrib'
 import recontrib from 're/blessed-contrib'
 
 import * as utils from '~/utils.js'
-import * as system from '~/system'
 
-import I from './i.js'
-import Route from './route.js'
+import Trainer from '~/system/trainer.js'
+import Route from '~/system/route.js'
 import Encounter from '~/system/encounter.js'
-
-const now = (format = 'YYYY/MM/DD') => {
-  return formatToTimeZone(new Date(), format, { timeZone: 'Asia/Tokyo' })
-}
+import I from '~/system/i.js'
 
 const screen = blessed.screen({
   smartCSR: true,
@@ -66,12 +60,12 @@ const trainersCardWidget = grid.set(0, 0, 6, 10, blessed.box, {
   ...preset("TRAINER'S CARD")
 })
 
-const tid = system.createTID()
+const trainer = new Trainer('Shiny Hunt TUI')
 
-trainersCardWidget.pushLine('Name: Shiny Hunt TUI')
-trainersCardWidget.pushLine(`ID: ${tid[0]}`)
-trainersCardWidget.pushLine(`_ID: ${tid[1]}`)
-trainersCardWidget.pushLine(`Started on: ${now()}`)
+trainersCardWidget.pushLine(`Name: ${trainer.name}`)
+trainersCardWidget.pushLine(`ID: ${trainer.tid[0]}`)
+trainersCardWidget.pushLine(`_ID: ${trainer.tid[1]}`)
+trainersCardWidget.pushLine(`Started on: ${trainer.started}`)
 
 /*
  * Data Widget
@@ -175,7 +169,7 @@ const logWidget = grid.set(11, 10, 9, 10, blessed.log, {
 
 logWidget.formatLog = (...log) => {
   log = [].concat(...log)
-  logWidget.log(`[${now('HH:mm:ss')}]:`, log[0])
+  logWidget.log(`[${utils.now('HH:mm:ss')}]:`, log[0])
   for(let i = 1; i < log.length; i++) logWidget.log(log[i])
 }
 
@@ -188,7 +182,7 @@ logWidget.setIndex(1)
 
 screen.key('C-c', () => process.exit())
 
-const encounter = new Encounter(tid, appearances)
+const encounter = new Encounter(trainer.tid, appearances)
 const i = new I(route, encounter)
 
 screen.key(['w', 'a', 's', 'd'], (ch, key) => {

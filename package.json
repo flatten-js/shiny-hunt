@@ -1,7 +1,7 @@
 {
   "version": "0.0.1",
   "scripts": {
-    "walker": "babel-node ./example/walker/index.js",
+    "walker": "babel-node ./example/walker.js",
     "walker-watch": "nodemon --exec babel-node ./example/walker",
     "test": "babel-node ./example/test.js",
     "postinstall": "link-module-alias"
