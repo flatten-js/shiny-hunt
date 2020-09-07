@@ -62,10 +62,10 @@ const trainersCardWidget = grid.set(0, 0, 6, 10, blessed.box, {
 
 const trainer = new Trainer('Shiny Hunt TUI')
 
-trainersCardWidget.pushLine(`Name: ${trainer.name}`)
-trainersCardWidget.pushLine(`ID: ${trainer.tid[0]}`)
-trainersCardWidget.pushLine(`_ID: ${trainer.tid[1]}`)
-trainersCardWidget.pushLine(`Started on: ${trainer.started}`)
+trainersCardWidget.pushLine(`Name: ${trainer.card.name}`)
+trainersCardWidget.pushLine(`ID: ${trainer.card.tid[0]}`)
+trainersCardWidget.pushLine(`SID: ${trainer.card.tid[1]}`)
+trainersCardWidget.pushLine(`Started on: ${utils.now()}`)
 
 /*
  * Data Widget
@@ -194,7 +194,7 @@ screen.key(['w', 'a', 's', 'd'], (ch, key) => {
     .then(encounter => {
       appearanceListWidget.select(encounter.encount.uid - 1)
 
-      logWidget.formatLog(encounter.str, encounter.encount)
+      logWidget.formatLog(encounter.msg, encounter.encount)
       dataWidget.updateTemplate('encount', data.encount += 1)
 
       if (!encounter.encount.shiny) return
