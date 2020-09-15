@@ -1,5 +1,5 @@
 {
-  "version": "0.0.2",
+  "version": "0.0.3",
   "scripts": {
     "walker": "babel-node ./example/walker.js",
     "walker-watch": "nodemon --exec babel-node ./example/walker",
