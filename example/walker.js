@@ -6,8 +6,6 @@ import * as utils from '~/utils.js'
 
 import Trainer from '~/system/trainer.js'
 import Route from '~/system/route.js'
-import Encounter from '~/system/encounter.js'
-import I from '~/system/i.js'
 
 const screen = blessed.screen({
   smartCSR: true,
@@ -182,14 +180,13 @@ logWidget.setIndex(1)
 
 screen.key('C-c', () => process.exit())
 
-const encounter = new Encounter(trainer.tid, appearances)
-const i = new I(route, encounter)
+trainer.toLocation(route, appearances)
 
-screen.key(['w', 'a', 's', 'd'], (ch, key) => {
-  i.move(key, encount => {
+screen.key(trainer.input, (ch, key) => {
+  trainer.move(key, encount => {
     dataWidget.updateTemplate('steps', data.steps += 1)
 
-    if (!i.grass) return
+    if (!trainer.grass) return
     encount()
     .then(encounter => {
       appearanceListWidget.select(encounter.encount.uid - 1)
@@ -205,9 +202,9 @@ screen.key(['w', 'a', 's', 'd'], (ch, key) => {
     })
   })
 
-  i.render()
+  trainer.render()
   screen.render()
 })
 
-i.render()
+trainer.render()
 screen.render()

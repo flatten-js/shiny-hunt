@@ -3,7 +3,7 @@
   "scripts": {
     "walker": "babel-node ./example/walker.js",
     "walker-watch": "nodemon --exec babel-node ./example/walker",
-    "test": "babel-node ./example/test.js",
+    "test": "babel-node ./test",
     "postinstall": "link-module-alias"
   },
   "dependencies": {
