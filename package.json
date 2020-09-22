@@ -10,7 +10,7 @@
     "@babel/core": "^7.11.4",
     "@babel/node": "^7.10.5",
     "@babel/preset-env": "^7.11.0",
-    "blessed": "^0.1.81",
+    "blessed": "git+https://github.com/flatten-js/blessed.git",
     "blessed-contrib": "^4.8.20",
     "date-fns-timezone": "^0.1.4",
     "link-module-alias": "^1.2.0"
