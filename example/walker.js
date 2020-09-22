@@ -1,6 +1,5 @@
 import blessed from 'blessed'
 import contrib from 'blessed-contrib'
-import recontrib from 're/blessed-contrib'
 
 import * as utils from '~/utils.js'
 
@@ -104,7 +103,7 @@ dataWidget.templateLine(2, 'shiny', 'Shiny: #', data.shiny)
  * Appearance List Widget
  */
 
-const appearanceListWidget = grid.set(10, 0, 10, 10, recontrib.table, {
+const appearanceListWidget = grid.set(10, 0, 10, 10, contrib.table, {
   keys: true,
   columnSpacing: 5,
   columnWidth: [3, 5, 4, 4],
@@ -189,8 +188,6 @@ screen.key(trainer.input, (ch, key) => {
     if (!trainer.grass) return
     encount()
     .then(encounter => {
-      appearanceListWidget.select(encounter.encount.uid - 1)
-
       logWidget.formatLog(encounter.msg, encounter.encount)
       dataWidget.updateTemplate('encount', data.encount += 1)
 
